@@ -60,9 +60,9 @@ const addlote = ({ busca, lotes }) => {
                                         <li><span className="mx-2">/</span></li>
                                         <li>
                                             <InertiaLink
-                                                href={route('lotes.index')}
+                                                href={route('aviarios.index')}
                                                 className="text-gray-500">
-                                                Lotes
+                                                Aviários
                                             </InertiaLink>
                                         </li>
                                         <li><span className="mx-2">/</span></li>
@@ -74,7 +74,7 @@ const addlote = ({ busca, lotes }) => {
 
                         <div className="flex p-4">
                             <div className="flex-1">
-                                <BtnVoltar url={'lotes.index'} />
+                                <BtnVoltar url={'aviarios.index'} />
                             </div>
                             <div className="flex-1">
                                 <FrmSearchValue url={'lotes.busca'} placeHolder={'Pesquisar por lote'} className="uppercase" />

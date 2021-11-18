@@ -107,7 +107,6 @@ const Lotes = ({ lotes, success, busca }) => {
                         <table className="mt-2 min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-100">
                                 <tr>
-                                    <th className="px-6 py-3 text-left text-md font-semibold text-gray-500 tracking-wider">#</th>
                                     <th className="px-6 py-3 text-left text-md font-semibold text-gray-500 tracking-wider">Lote</th>
                                     <th className="px-6 py-3 text-left text-md font-semibold text-gray-500 tracking-wider">Fêmeas</th>
                                     <th className="px-6 py-3 text-left text-md font-semibold text-gray-500 tracking-wider">Capitalizadas/Data</th>
@@ -123,7 +122,6 @@ const Lotes = ({ lotes, success, busca }) => {
 
                                 {lotes.data.map((lt, index) => (
                                     <tr key={index} className={(index % 2) == 0 ? "bg-gray-100 transition-colors duration-200 transform hover:bg-blue-100" : "bg-gray-50 transition-colors duration-200 transform hover:bg-blue-100"}>
-                                        <td className="px-6 py-2 whitespace-nowrap"><span className="text-gray-600">{lt.id_lote}</span></td>
                                         <td className="px-6 py-2 whitespace-nowrap"><span className="text-gray-600">{lt.lote}</span></td>
                                         <td className="px-6 py-2 whitespace-nowrap"><span className="text-gray-600">{lt.femea}</span></td>
                                         <td className="px-6 py-2 whitespace-nowrap">
@@ -174,7 +172,7 @@ const Lotes = ({ lotes, success, busca }) => {
 
                                 {lotes.data.length == 0 &&
                                     <tr>
-                                        <td colSpan="10">
+                                        <td colSpan="9">
                                             <div className="flex justify-left bg-red-100 text-red-700 text-sm p-2">
                                                 <IconContext.Provider value={{ className: "text-2xl text-red-600" }}>
                                                     <div>

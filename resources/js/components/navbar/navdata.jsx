@@ -2,11 +2,13 @@ export const navData = [
     {
        "categoryname": "Home",
         "url": "home",
+        "slug": ""
         "subcategories": []
       },
       {
        "categoryname": "Períodos",
         "url": "periodos.index",
+        "slug": ""
         "subcategories": []
       },{
       "categoryname": "Lotes/Aviários",
