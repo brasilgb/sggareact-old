@@ -85,7 +85,7 @@ const Lotes = ({ lotes, success, busca }) => {
                         </div>
 
                     </div>
-                    <section className="p-2 overflow-x-auto">
+                    <section className="overflow-x-auto">
 
                         {success &&
                             <div id="remalert" className="flex w-full mx-auto overflow-hidden items-center m-4 bg-green-500 border border-green-400 text-gray-600 rounded">

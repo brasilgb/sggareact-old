@@ -36,7 +36,7 @@ const NavBar = () => {
     return (
         <Fragment>
 
-            <nav ref={ref} className="bg-gray-200 shadow dark:bg-gray-800 font-roboto font-normal">
+            <nav ref={ref} className="bg-gray-200 shadow dark:bg-gray-800 font-roboto font-normal border-b border-white">
                 <div className="container px-6 py-4 mx-auto">
                     <div className="2xl:flex 2xl:items-center 2xl:justify-between">
                         <div className="flex items-center justify-between">
