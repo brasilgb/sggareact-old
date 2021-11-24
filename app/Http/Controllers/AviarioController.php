@@ -35,7 +35,7 @@ class AviarioController extends Controller
     {
         $aviarios = Aviario::where('lote_id', $request->search)->paginate(15);
         $busca = true;
-        return view('aviarios.index', compact('aviarios', 'busca'));
+        return Inertia::render('aviarios', compact('aviarios', 'busca'));
     }
 
     /**
@@ -75,7 +75,7 @@ class AviarioController extends Controller
             'macho' => 'required'
         ];
         $messages = [
-            'required' => 'O campo :attribute deve ser preenchido!',
+            'required' => 'O campo :attribute deve ser selecionado!',
             'integer' => 'O campo :attribute só aceita inteiros!',
             'date_format' => 'O campo data do lote só aceita datas!',
             'unique' => 'O nome do :attribute já existe na base de dados!'

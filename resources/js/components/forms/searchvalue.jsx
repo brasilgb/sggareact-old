@@ -4,7 +4,7 @@ import { IconContext } from 'react-icons';
 import { Inertia } from '@inertiajs/inertia';
 import { usePage } from '@inertiajs/inertia-react';
 
-const FrmSearchValue = ({url, placeHolder, className}) => {
+const FrmSearchValue = ({url, placeHolder}) => {
 
     const {errors} = usePage().props
     const valueSearchRef = useRef();

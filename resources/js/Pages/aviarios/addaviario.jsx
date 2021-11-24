@@ -16,8 +16,12 @@ import { HiExclamation } from 'react-icons/hi';
 const addlote = ({ busca, lotes }) => {
     const { errors } = usePage().props;
     const loteRef = useRef();
-    const femeaRef = useRef();
+    const femeaBox1Ref = useRef();
+    const femeaBox2Ref = useRef();
+    const femeaBox3Ref = useRef();
+    const femeaBox4Ref = useRef();
     const machoRef = useRef();
+
     const [startDate, setStartDate] = useState(new Date());
     const dateLote = moment(startDate).format("YYYY-MM-DD");
 
@@ -29,6 +33,31 @@ const addlote = ({ busca, lotes }) => {
         const macho = machoRef.current.value;
 
         Inertia.post(route('lotes.store'), { data_lote, lote, femea, macho })
+    }
+    const Boxes =
+        [{
+            "box": {
+                "value": `box1`,
+                "ref": `Box1Ref`
+            },
+            "box": {
+                "value": `box2`,
+                "ref": `Box2Ref`
+            },
+            "box": {
+                "value": `box3`,
+                "ref": `Box3Ref`
+            },
+            "box": {
+                "value": `box4`,
+                "ref": `Box4Ref`
+            }
+        }
+        ];
+
+    let boxes = [];
+    for (let i = 1; i < 5; i++) {
+        boxes.push()
     }
     return (
         <Fragment>
@@ -77,7 +106,7 @@ const addlote = ({ busca, lotes }) => {
                                 <BtnVoltar url={'aviarios.index'} />
                             </div>
                             <div className="flex-1">
-                                <FrmSearchValue url={'lotes.busca'} placeHolder={'Pesquisar por lote'} className="uppercase" />
+                                <FrmSearchValue url={'aviarios.busca'} placeHolder={'Pesquisar por lote'} className="uppercase" />
                             </div>
                         </div>
 
@@ -92,33 +121,83 @@ const addlote = ({ busca, lotes }) => {
                                     onChange={(date) => setStartDate(date)}
                                     dateFormat="dd/MM/yyyy"
                                     locale={ptBR}
-                                    className={`block w-full px-4 py-2 text-gray-700 bg-white border ${errors.data_lote? "border-red-500" : "border-gray-300"} rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
+                                    className={`block w-full px-4 py-2 text-gray-700 bg-white border ${errors.data_lote ? "border-red-500" : "border-gray-300"} rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
                                 />
                                 {errors.data_lote && <div className="flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.data_lote}</div>}
                             </div>
 
                             <div className="pt-2">
                                 <label className="text-gray-600 text-sm font-medium mb-1" htmlFor="lote">Identificação do Lote</label>
-                                <input
+                                <select
                                     ref={loteRef}
                                     id="lote"
                                     type="text"
-                                    className={`uppercase block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.lote? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
-                                />
+                                    className={`block w-full px-2 py-2 text-gray-700 bg-white border  ${errors.lote ? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
+                                >
+                                    <option value="">Selecione um lote</option>
+                                    {lotes.map((lote, IndexL) => (
+                                        <option key={IndexL} value={lote.id_lote}>{lote.lote}</option>
+                                    ))}
+                                </select>
                                 {errors.lote && <div className="text-sm flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.lote}</div>}
                             </div>
 
-                            <div className="pt-2">
-                                <label className="text-gray-600 text-sm font-medium mb-1" htmlFor="femea">Aves Fêmeas</label>
-                                <input
-                                    ref={femeaRef}
-                                    id="femeas"
-                                    type="number"
-                                    min="1"
-                                    className={`block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.femea ? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
-                                />
-                                {errors.femea && <div className="flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.femea}</div>}
+                            {/* Box aves fêmeas */}
+                            <div className="flex items-center justify-center mt-2">
+                                {Boxes.map((b, i) => (
+                
+                                    <div key={i} className="pt-2">
+                                        <h1>{`femea${b.box.value}`}</h1>
+                                        <label className="text-gray-600 text-sm font-medium mb-1" htmlFor="femea">Aves Fêmeas</label>
+                                        <input
+                                            // ref={`femea${b.box.value}`}
+                                            id="femeas"
+                                            type="number"
+                                            min="1"
+                                            className={`block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.femea ? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
+                                        />
+                                        {errors.femea && <div className="flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.femea}</div>}
+                                    </div>
+                                ))}
+                                {/* <div className="pt-2 mx-2">
+                                    <label className="text-gray-600 text-sm font-medium mb-1" htmlFor="femea">Aves Fêmeas</label>
+                                    <input
+                                        ref={femeaRef}
+                                        id="femeas"
+                                        type="number"
+                                        min="1"
+                                        className={`block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.femea ? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
+                                    />
+                                    {errors.femea && <div className="flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.femea}</div>}
+                                </div>
+
+                                <div className="pt-2 mr-2">
+                                    <label className="text-gray-600 text-sm font-medium mb-1" htmlFor="femea">Aves Fêmeas</label>
+                                    <input
+                                        ref={femeaRef}
+                                        id="femeas"
+                                        type="number"
+                                        min="1"
+                                        className={`block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.femea ? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
+                                    />
+                                    {errors.femea && <div className="flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.femea}</div>}
+                                </div>
+
+                                <div className="pt-2">
+                                    <label className="text-gray-600 text-sm font-medium mb-1" htmlFor="femea">Aves Fêmeas</label>
+                                    <input
+                                        ref={femeaRef}
+                                        id="femeas"
+                                        type="number"
+                                        min="1"
+                                        className={`block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.femea ? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
+                                    />
+                                    {errors.femea && <div className="flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.femea}</div>}
+                                </div> */}
+
+
                             </div>
+
 
                             <div className="pt-2">
                                 <label className="text-gray-600 text-sm font-medium mb-1" htmlFor="macho">Aves Machos</label>
@@ -127,12 +206,11 @@ const addlote = ({ busca, lotes }) => {
                                     id="macho"
                                     type="number"
                                     min="1"
-                                    className={`block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.macho? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
+                                    className={`block w-full px-4 py-2 text-gray-700 bg-white border  ${errors.macho ? "border-red-500" : "border-gray-300"}  rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-300 dark:focus:border-blue-500 focus:outline-none focus:ring`}
                                 />
                                 {errors.macho && <div className="flex items-center w-full text-red-500"><HiExclamation className="text-sm" /> {errors.macho}</div>}
                             </div>
                         </div>
-
 
                         <div className="flex items-center p-3 mt-2 text-center justify-end space-x-4 bg-gray-100 rounded-b-lg border-t">
 

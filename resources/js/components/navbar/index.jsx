@@ -33,6 +33,8 @@ const NavBar = () => {
         if (menuCategoryOpen) setMenuCategoryOpen([false, false]);
     });
 
+    const [menuOpen, setMenuOpen] = useState(menuOpen);
+
     return (
         <Fragment>
 
@@ -48,6 +50,7 @@ const NavBar = () => {
                             <div className="flex 2xl:hidden">
                                 <a
                                     type="button"
+                                    onClick={() => setMenuOpen(!menuOpen)}
                                     className="text-gray-600 dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 focus:outline-none focus:text-gray-500 dark:focus:text-gray-400"
                                     aria-label="toggle menu"
                                 >
@@ -61,7 +64,8 @@ const NavBar = () => {
                         </div>
 
                         {/* <!-- Mobile Menu open: "block", Menu closed: "hidden" --> */}
-                        <div className={"flex-1 2xl:flex 2xl:items-center 2xl:justify-between"}>
+                        <div className={`flex-1 2xl:flex 2xl:items-center 2xl:justify-between
+                        ${menuOpen ? " block" : " hidden"}`}>
                             <div className="flex flex-col -mx-4 2xl:flex-row 2xl:items-center 2xl:mx-8">
 
                                 {/* Home */}
